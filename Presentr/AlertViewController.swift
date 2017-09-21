@@ -247,9 +247,11 @@ extension AlertViewController {
             return false
         }
 
-        let font = CGFont(provider)
+        
         var error: Unmanaged<CFError>?
 
+        guard let font = CGFont(provider) else { return false }
+        
         let success = CTFontManagerRegisterGraphicsFont(font, &error)
         if !success {
             print("Error loading font. Font is possibly already registered.")
